@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,7 +10,7 @@
 
 'use strict';
 
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 
 class EventHolder {
   _heldEvents: Object;
@@ -42,7 +42,10 @@ class EventHolder {
    *   }); //logs 'abc'
    *
    */
-  holdEvent(eventType: string, ...args: any) {
+  holdEvent(
+    eventType: string,
+    ...args: any
+  ): $TEMPORARY$object<{|eventType: string, index: $FlowFixMeEmpty|}> {
     this._heldEvents[eventType] = this._heldEvents[eventType] || [];
     const eventsOfType = this._heldEvents[eventType];
     const key = {
